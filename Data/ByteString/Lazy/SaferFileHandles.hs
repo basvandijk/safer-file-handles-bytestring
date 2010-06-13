@@ -45,7 +45,7 @@ import qualified Data.ByteString.Lazy.ExplicitIOModes as E ( hGetContents
                                                            , hPutStr
                                                            )
 
--- from ourselves:
+-- from safer-file-handles:
 import System.IO.SaferFileHandles          ( RegionalFileHandle
                                            , ReadModes, WriteModes
                                            )

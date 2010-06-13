@@ -41,7 +41,7 @@ import qualified Data.ByteString.Lazy.Char8.ExplicitIOModes as E
     , hPut
     )
 
--- from ourselves:
+-- from safer-file-handles:
 import System.IO.SaferFileHandles ( RegionalFileHandle , ReadModes, WriteModes )
 import System.IO.SaferFileHandles.Unsafe ( wrap, wrap2 )
 

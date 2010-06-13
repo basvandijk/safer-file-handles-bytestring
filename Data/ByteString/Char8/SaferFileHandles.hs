@@ -49,7 +49,7 @@ import qualified Data.ByteString.Char8.ExplicitIOModes as E ( hGetLine
                                                             , hPutStrLn
                                                             )
 
--- from ourselves:
+-- from safer-file-handles:
 import System.IO.SaferFileHandles          ( RegionalFileHandle
                                            , ReadModes, WriteModes
                                            )
