@@ -33,7 +33,7 @@ import Control.Monad.IO.Class ( MonadIO )
 import qualified Data.ByteString.Lazy.Char8 as B
 
 -- from regions:
-import Control.Monad.Trans.Region ( ParentOf )
+import Control.Monad.Trans.Region ( AncestorRegion )
 
 -- from explicit-iomodes-bytestring:
 import qualified Data.ByteString.Lazy.Char8.ExplicitIOModes as E
@@ -51,23 +51,23 @@ import System.IO.SaferFileHandles.Unsafe ( wrap, wrap2 )
 -------------------------------------------------------------------------------
 
 -- | Wraps: @Data.ByteString.'B.hGetContents'@.
-hGetContents ∷ (pr `ParentOf` cr, MonadIO cr, ReadModes ioMode)
+hGetContents ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
              ⇒ RegionalFileHandle ioMode pr → cr B.ByteString
 hGetContents = wrap E.hGetContents
 
 -- | Wraps: @Data.ByteString.'B.hGet'@.
-hGet ∷ (pr `ParentOf` cr, MonadIO cr, ReadModes ioMode)
+hGet ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
      ⇒ RegionalFileHandle ioMode pr → Int → cr B.ByteString
 hGet = wrap2 E.hGet
 
 -- | Wraps: @Data.ByteString.'B.hGetNonBlocking'@.
-hGetNonBlocking ∷ (pr `ParentOf` cr, MonadIO cr, ReadModes ioMode)
+hGetNonBlocking ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
                 ⇒ RegionalFileHandle ioMode pr → Int → cr B.ByteString
 hGetNonBlocking = wrap2 E.hGetNonBlocking
 
 
 -- | Wraps: @Data.ByteString.'B.hPut'@.
-hPut ∷ (pr `ParentOf` cr, MonadIO cr, WriteModes ioMode)
+hPut ∷ (pr `AncestorRegion` cr, MonadIO cr, WriteModes ioMode)
      ⇒ RegionalFileHandle ioMode pr → B.ByteString → cr ()
 hPut = wrap2 E.hPut
 
