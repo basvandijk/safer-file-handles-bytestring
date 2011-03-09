@@ -50,10 +50,8 @@ import qualified Data.ByteString.ExplicitIOModes as E ( hGetLine
                                                       )
 
 -- from safer-file-handles:
-import System.IO.SaferFileHandles          ( RegionalFileHandle
-                                           , ReadModes, WriteModes
-                                           )
-import System.IO.SaferFileHandles.Unsafe   ( wrap, wrap2 )
+import System.IO.SaferFileHandles        ( FileHandle, ReadModes, WriteModes )
+import System.IO.SaferFileHandles.Unsafe ( wrap, wrap2 )
 
 
 -------------------------------------------------------------------------------
@@ -61,38 +59,52 @@ import System.IO.SaferFileHandles.Unsafe   ( wrap, wrap2 )
 -------------------------------------------------------------------------------
 
 -- | Wraps: @Data.ByteString.'B.hGetLine'@.
-hGetLine ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
-         ⇒ RegionalFileHandle ioMode pr → cr B.ByteString
+hGetLine ∷ ( FileHandle handle, ReadModes ioMode
+           , pr `AncestorRegion` cr, MonadIO cr
+           )
+         ⇒ handle ioMode pr → cr B.ByteString
 hGetLine = wrap E.hGetLine
 
 -- | Wraps: @Data.ByteString.'B.hGetContents'@.
-hGetContents ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
-             ⇒ RegionalFileHandle ioMode pr → cr B.ByteString
+hGetContents ∷ ( FileHandle handle, ReadModes ioMode
+               , pr `AncestorRegion` cr, MonadIO cr
+               )
+             ⇒ handle ioMode pr → cr B.ByteString
 hGetContents = wrap E.hGetContents
 
 -- | Wraps: @Data.ByteString.'B.hGet'@.
-hGet ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
-     ⇒ RegionalFileHandle ioMode pr → Int → cr B.ByteString
+hGet ∷ ( FileHandle handle, ReadModes ioMode
+       , pr `AncestorRegion` cr, MonadIO cr
+       )
+     ⇒ handle ioMode pr → Int → cr B.ByteString
 hGet = wrap2 E.hGet
 
 -- | Wraps: @Data.ByteString.'B.hGetNonBlocking'@.
-hGetNonBlocking ∷ (pr `AncestorRegion` cr, MonadIO cr, ReadModes ioMode)
-                ⇒ RegionalFileHandle ioMode pr → Int → cr B.ByteString
+hGetNonBlocking ∷ ( FileHandle handle, ReadModes ioMode
+                  , pr `AncestorRegion` cr, MonadIO cr
+                  )
+                ⇒ handle ioMode pr → Int → cr B.ByteString
 hGetNonBlocking = wrap2 E.hGetNonBlocking
 
 -- | Wraps: @Data.ByteString.'B.hPut'@.
-hPut ∷ (pr `AncestorRegion` cr, MonadIO cr, WriteModes ioMode)
-     ⇒ RegionalFileHandle ioMode pr → B.ByteString → cr ()
+hPut ∷ ( FileHandle handle, WriteModes ioMode
+       , pr `AncestorRegion` cr, MonadIO cr
+       )
+     ⇒ handle ioMode pr → B.ByteString → cr ()
 hPut = wrap2 E.hPut
 
 -- | Wraps: @Data.ByteString.'B.hPutStr'@.
-hPutStr ∷ (pr `AncestorRegion` cr, MonadIO cr, WriteModes ioMode)
-        ⇒ RegionalFileHandle ioMode pr → B.ByteString → cr ()
+hPutStr ∷ ( FileHandle handle, WriteModes ioMode
+          , pr `AncestorRegion` cr, MonadIO cr
+          )
+        ⇒ handle ioMode pr → B.ByteString → cr ()
 hPutStr = wrap2 E.hPutStr
 
 -- | Wraps: @Data.ByteString.'B.hPutStrLn'@.
-hPutStrLn ∷ (pr `AncestorRegion` cr, MonadIO cr, WriteModes ioMode)
-          ⇒ RegionalFileHandle ioMode pr → B.ByteString → cr ()
+hPutStrLn ∷ ( FileHandle handle, WriteModes ioMode
+            , pr `AncestorRegion` cr, MonadIO cr
+            )
+          ⇒ handle ioMode pr → B.ByteString → cr ()
 hPutStrLn = wrap2 E.hPutStrLn
 
 
