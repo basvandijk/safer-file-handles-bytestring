@@ -1,5 +1,5 @@
 name:          safer-file-handles-bytestring
-version:       0.2
+version:       0.2.0.1
 cabal-version: >=1.6
 build-type:    Simple
 license:       BSD3
@@ -13,8 +13,8 @@ synopsis:      Extends safer-file-handles with ByteString operations
 description:   Extends @safer-file-handles@ with @ByteString@ operations
 
 source-repository head
-  Type:     darcs
-  Location: http://code.haskell.org/~basvandijk/code/safer-file-handles-bytestring
+  Type:     git
+  Location: git://github.com/basvandijk/safer-file-handles-bytestring.git
 
 Library
   GHC-Options: -Wall
