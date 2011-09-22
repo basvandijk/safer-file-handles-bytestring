@@ -19,7 +19,6 @@ module Data.ByteString.SaferFileHandles
 
     , hPut
     , hPutStr
-    , hPutStrLn
     ) where
 
 -------------------------------------------------------------------------------
@@ -46,7 +45,6 @@ import qualified Data.ByteString.ExplicitIOModes as E ( hGetLine
 
                                                       , hPut
                                                       , hPutStr
-                                                      , hPutStrLn
                                                       )
 
 -- from safer-file-handles:
@@ -99,13 +97,5 @@ hPutStr ∷ ( FileHandle handle, WriteModes ioMode
           )
         ⇒ handle ioMode pr → B.ByteString → cr ()
 hPutStr = wrap2 E.hPutStr
-
--- | Wraps: @Data.ByteString.'B.hPutStrLn'@.
-hPutStrLn ∷ ( FileHandle handle, WriteModes ioMode
-            , pr `AncestorRegion` cr, MonadIO cr
-            )
-          ⇒ handle ioMode pr → B.ByteString → cr ()
-hPutStrLn = wrap2 E.hPutStrLn
-
 
 -- The End ---------------------------------------------------------------------
