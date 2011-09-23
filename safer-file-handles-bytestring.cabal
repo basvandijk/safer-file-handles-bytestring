@@ -1,5 +1,5 @@
 name:          safer-file-handles-bytestring
-version:       0.3
+version:       0.3.0.1
 cabal-version: >=1.6
 build-type:    Simple
 license:       BSD3
@@ -22,10 +22,10 @@ Library
   GHC-Options: -Wall
   build-depends: base               	     >= 4    && < 4.5
                , bytestring         	     >= 0.9  && < 0.10
-               , regions            	     >= 0.9  && < 0.11
+               , regions            	     >= 0.9  && < 0.12
                , transformers       	     >= 0.2  && < 0.3
                , explicit-iomodes-bytestring >= 0.2  && < 0.3
-               , safer-file-handles          >= 0.10 && < 0.11
+               , safer-file-handles          >= 0.10 && < 0.12
   exposed-modules: Data.ByteString.SaferFileHandles
                    Data.ByteString.Char8.SaferFileHandles
                    Data.ByteString.Lazy.SaferFileHandles
